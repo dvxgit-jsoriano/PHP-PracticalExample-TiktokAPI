@@ -5,6 +5,12 @@
 - It is required for you to read tiktok documentation first.
 - Tiktok requires an https even if it is just for testing. Note that NGROK is not an option for testing because you have to submit your app for approval. It is a low chance that your ngrok https link will stay the same.
 
+## Installation
+
+- Clone the application
+- Run `cp 'env copy.ini' env.ini` to create a configuration file.
+- Configure your client_id, client_key, client_secret, and a redirect_uri
+
 ## Resources
 
 - **Vanilla PHP** just means plain original PHP without any framework.
