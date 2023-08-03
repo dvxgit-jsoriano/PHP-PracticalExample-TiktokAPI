@@ -11,7 +11,7 @@ function redirectToTikTokLogin()
     $clientId = $config['CLIENT_ID'];
     $redirectUri = $config['REDIRECT_URI']; // Should point to the page handling TikTok callback
 
-    $tiktokLoginUrl = 'https://www.tiktok.com/oauth/authorize?client_id=' . $clientId . '&redirect_uri=' . urlencode($redirectUri) . '&response_type=code';
+    $tiktokLoginUrl = 'https://www.tiktok.com/v2/auth/authorize?client_id=' . $clientId . '&redirect_uri=' . urlencode($redirectUri) . '&response_type=code';
     header('Location: ' . $tiktokLoginUrl);
     exit;
 }
