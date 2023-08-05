@@ -1,4 +1,6 @@
 <?php
+echo "test";
+exit(1);
 $config = parse_ini_file('env.ini');
 
 // Get the authorization code from the URL parameters after TikTok's redirect
