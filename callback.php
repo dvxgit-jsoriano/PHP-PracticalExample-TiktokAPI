@@ -10,7 +10,7 @@ $clientSecret = $config['CLIENT_SECRET'];
 $redirectUri = $config['REDIRECT_URI'];
 
 // Endpoint to exchange the authorization code for an access token
-$tokenEndpoint = 'https://api.tiktok.com/oauth/access_token';
+$tokenEndpoint = 'https://open.tiktokapis.com/v2/oauth/token/';
 
 // Data to be sent in the POST request
 $data = array(
@@ -22,17 +22,29 @@ $data = array(
     'scope' => 'user.info.basic,video.list',
 );
 
-// Make the POST request using curl
-$ch = curl_init($tokenEndpoint);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+// Convert the POST data into a URL-encoded string
+$postFields = http_build_query($data);
 
-$response = curl_exec($ch);
+// Initialize cURL session
+$curl = curl_init();
+
+// Set cURL options
+curl_setopt($curl, CURLOPT_URL, $tokenEndpoint);
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $postFields);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/x-www-form-urlencoded'
+));
+
+// Execute the cURL request
+$response = curl_exec($curl);
+
 curl_close($ch);
 
 // Decode the response JSON
 $responseData = json_decode($response, true);
+die(var_dump($responseData));
 
 // Extract the access token from the response
 $accessToken = $responseData['access_token'];
