@@ -19,7 +19,7 @@ $data = array(
     'code' => $authorizationCode,
     'redirect_uri' => $redirectUri,
     'grant_type' => 'authorization_code',
-    'scope' => 'user.info.basic, video.list',
+    'scope' => 'user.info.basic,video.list',
 );
 
 // Make the POST request using curl
@@ -36,6 +36,8 @@ $responseData = json_decode($response, true);
 
 // Extract the access token from the response
 $accessToken = $responseData['access_token'];
+
+die(var_dump($accessToken));
 
 // Store the access token in the session
 session_start();

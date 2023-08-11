@@ -17,7 +17,7 @@ function redirectToTikTokLogin()
         'client_key' => $config['CLIENT_KEY'],
         'redirect_uri' => $config['REDIRECT_URI'],
         'response_type' => 'code',
-        'scope' => 'user.info.basic, video.list',
+        'scope' => 'user.info.basic,video.list',
     ];
 
     $tiktokLoginUrl = 'https://www.tiktok.com/v2/auth/authorize?' . http_build_query($parameters);
