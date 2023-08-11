@@ -19,7 +19,7 @@ $data = array(
     'code' => $authorizationCode,
     'redirect_uri' => $redirectUri,
     'grant_type' => 'authorization_code',
-    'scope' => 'user.info.basic, video.list'
+    'scope' => 'user.info.basic, video.list',
 );
 
 // Make the POST request using curl
