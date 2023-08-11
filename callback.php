@@ -19,6 +19,7 @@ $data = array(
     'code' => $authorizationCode,
     'redirect_uri' => $redirectUri,
     'grant_type' => 'authorization_code',
+    'scope' => 'research.data.basic'
 );
 
 // Make the POST request using curl
