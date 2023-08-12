@@ -3,9 +3,11 @@ $config = parse_ini_file('env.ini');
 
 // Get the authorization code from the URL parameters after TikTok's redirect
 $authorizationCode = $_GET['code'];
+//die(var_dump(urlencode($authorizationCode)));
 
 // Your TikTok App credentials
 $clientId = $config['CLIENT_ID'];
+$clientKey = $config['CLIENT_KEY'];
 $clientSecret = $config['CLIENT_SECRET'];
 $redirectUri = $config['REDIRECT_URI'];
 
@@ -14,12 +16,11 @@ $tokenEndpoint = 'https://open.tiktokapis.com/v2/oauth/token/';
 
 // Data to be sent in the POST request
 $data = array(
-    'client_key' => $clientId,
+    'client_key' => $clientKey,
     'client_secret' => $clientSecret,
-    'code' => urldecode($authorizationCode),
+    'code' => $authorizationCode,
     'redirect_uri' => $redirectUri,
     'grant_type' => 'authorization_code',
-    'scope' => 'user.info.basic,video.list',
 );
 
 // Convert the POST data into a URL-encoded string
@@ -44,7 +45,7 @@ curl_close($ch);
 
 // Decode the response JSON
 $responseData = json_decode($response, true);
-die(var_dump($responseData));
+//die(var_dump($responseData));
 
 // Extract the access token from the response
 $accessToken = $responseData['access_token'];
